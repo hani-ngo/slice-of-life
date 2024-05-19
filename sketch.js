@@ -1,38 +1,105 @@
-let images = {};
-let imageNames = [
-  "img1",
-  "img2",
-  "img",
-  "meo",
-  "hani",
-  "bg",
-  "miki",
-  "trash",
-  "bgs",
-  "title",
-  "treasure"
+let img1;
+let img2;
+let img;
+let meo;
+let hani;
+let bg;
+let miki;
+// let bunbo;
+//let mogu;
+let trash;
+let bgs;
+let title;
+let treasure; 
+
+let symbols = [
+  "💩",
+  "🅣",
+  "🅞",
+  "🅘",
+  "🅛",
+  "🅔",
+  "🅣",
+  "🚽",
+  "うん",
+  "こ",
+  "ⓟ",
+  "ⓞ",
+  "ⓞ",
+  "ⓟ",
+  "✳",
+];
+let symbols1 = [
+  "😼",
+  "🅒",
+  "🅐",
+  "🅣",
+  "𖢑",
+  "𖠢",
+  "𖥕",
+  "𖧉",
+  "𖢑",
+  "𖠢",
+  "𖥕",
+  "𖧉",
+  "✳",
+];
+let symbols2 = [
+  "👩‍🎨",
+  "い",
+  "つ",
+  "も",
+  "頑",
+  "張",
+  "って",
+  "る",
+  "🌿",
+  "🌸",
 ];
 
+let ratio = 10;
+let ascii;
+let ascii1;
+let ascii2;
+
+let xToilet, yToilet;
+let xMeo, yMeo;
+let xHani, yHani;
+
+let target = 0;
+
 function preload() {
-  imageNames.forEach(name => {
-    let extension = name === "bg" ? ".jpeg" : ".png";  // Use .jpeg for bg, .png for others
-    images[name] = loadImage(`images/${name}${extension}`);
-  });
+  img1 = loadImage("https://i.imgur.com/hdqHWwQ.png");
+  img2 = loadImage("https://i.imgur.com/hdqHWwQ.png");
+  img = loadImage("https://i.imgur.com/4x5AUYC.png");
+  meo = loadImage("https://i.imgur.com/Vegi2h9.png");
+  hani = loadImage("https://i.imgur.com/S7sS5pD.png");
+  bg = loadImage("https://i.imgur.com/zKjTdQS.jpeg");
+  miki = loadImage("https://i.imgur.com/EDJhY3y.png");
+  // bunbo = loadImage("https://i.imgur.com/uQzTysU.png");
+  trash = loadImage("https://i.imgur.com/hSBklHh.png");
+  bgs =loadImage("https://i.imgur.com/dGDXJvK.png");
+  //mogu = loadImage("https://i.imgur.com/n4GwMDI.png");
+  title = loadImage("https://i.imgur.com/dvliyQA.png");
+  treasure = loadImage("https://i.imgur.com/nUJN3rP.png");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
-  images['treasure'].resize(windowWidth + 300, windowHeight + 300);
-  images['img1'].resize(300, 0);
-  images['img2'].resize(100, 0);
-  images['img'].resize(250, 0);
-  images['meo'].resize(300, 0);
-  images['hani'].resize(300, 0);
-  images['miki'].resize(300, 0);
-  images['trash'].resize(250, 0);
-  images['bgs'].resize(200, 0);
-  images['title'].resize(900, 0);
+  treasure.resize(windowWidth+300,windowHeight+300);
+  img1.resize(300, 0);
+  img2.resize(100, 0);
+  img.resize(250, 0);
+  meo.resize(300, 0);
+  hani.resize(300, 0);
+  miki.resize(300,0);
+  // bunbo.resize(200,0);
+  trash.resize(250,0);
+  bgs.resize(200,0);
+  //mogu.resize(250,0);
+  title.resize(900,0);
+
 
   xToilet = width / 2;
   yToilet = height / 2;
@@ -41,17 +108,19 @@ function setup() {
   xHani = width - 200;
   yHani = height - 200;
 
+  // noLoop();
+
   ascii = createGraphics(1000, 1000);
   ascii1 = createGraphics(1000, 1000);
   ascii2 = createGraphics(1000, 1000);
 
-  images['img2'].loadPixels();
-  for (let i = 0; i < images['img2'].height; i++) {
-    for (let j = 0; j < images['img2'].width; j++) {
-      let idx = (i * images['img2'].width + j) * 4;
-      let r = images['img2'].pixels[idx];
-      let g = images['img2'].pixels[idx + 1];
-      let b = images['img2'].pixels[idx + 2];
+  img2.loadPixels();
+  for (let i = 0; i < img2.height; i++) {
+    for (let j = 0; j < img2.width; j++) {
+      let idx = (i * img2.width + j) * 4;
+      let r = img2.pixels[idx];
+      let g = img2.pixels[idx + 1];
+      let b = img2.pixels[idx + 2];
       let grayScale = (r + g + b) / 3;
 
       if ((0 < grayScale) & (grayScale < 120)) {
@@ -94,14 +163,16 @@ function setup() {
     }
   }
 }
-
 function draw() {
-  image(images['treasure'], width / 2, height / 2);
-  image(images['miki'], width / 2 + 200, height - 140);
-  image(images['trash'], 250, 700);
-  image(images['bgs'], width - 250, 200);
-  image(images['title'], width / 2, 130);
-
+  //background(255,251,243);
+  
+  image (treasure,width/2, height/2);
+  image (miki,width/2+200,height-140);
+  image (trash, 250, 700);
+  image (bgs, width-250, 200);
+  image (title, width/2, 130);
+  // image (bunbo, width-350, height/2+50);
+  //image (mogu, width/2, 300);
   let khoangCachToilet = dist(xToilet, yToilet, mouseX, mouseY);
   let khoangCachMeo = dist(xMeo, yMeo, mouseX, mouseY);
   let khoangCachHani = dist(xHani, yHani, mouseX, mouseY);
@@ -126,52 +197,76 @@ function draw() {
     }
   }
 
+  // target = allKhoangCach.indexOf(Math.min(allKhoangCach));
+  // console.log(target);
+
+  
+  
+  
+  
+  
+  
+  
   if (target == 0) {
     if (khoangCachToilet < 50) {
-      image(images['meo'], xMeo, yMeo);
-      image(images['hani'], xHani, yHani);
-      image(ascii, width / 2, height / 2);
+      image(meo, xMeo, yMeo);
+      image(hani, xHani, yHani);
+      image(ascii, width/2, height/2);
+      
     } else {
-      image(images['img'], xToilet, yToilet);
-      image(images['meo'], xMeo, yMeo);
-      image(images['hani'], xHani, yHani);
+      image(img, xToilet, yToilet);
+      image(meo, xMeo, yMeo);
+      image(hani, xHani, yHani);
 
       push();
       let doTint = map(khoangCachToilet, 0, width / 2, 0, 255);
       tint(255, doTint);
-      image(images['img1'], mouseX, mouseY, 150, 150);
+      image(img1, mouseX, mouseY, 150, 150);
       pop();
     }
   } else if (target == 1) {
     if (khoangCachMeo < 50) {
-      image(images['img'], xToilet, yToilet);
-      image(images['hani'], xHani, yHani);
-      image(ascii1, width / 2, height / 2);
+      image(img, xToilet, yToilet);
+      image(hani, xHani, yHani);
+      image(ascii1, width/2, height/2);
+      
     } else {
-      image(images['img'], xToilet, yToilet);
-      image(images['meo'], xMeo, yMeo);
-      image(images['hani'], xHani, yHani);
+      image(img, xToilet, yToilet);
+      image(meo, xMeo, yMeo);
+      image(hani, xHani, yHani);
 
       push();
       let doTint = map(khoangCachMeo, 0, width / 2, 0, 255);
       tint(255, doTint);
-      image(images['img1'], mouseX, mouseY, 150, 150);
+      image(img1, mouseX, mouseY, 150, 150);
       pop();
     }
   } else {
     if (khoangCachHani < 50) {
-      image(images['img'], xToilet, yToilet);
-      image(images['meo'], xMeo, yMeo);
-      image(ascii2, width / 2, height / 2);
+      image(img, xToilet, yToilet);
+      image(meo, xMeo, yMeo);
+      image(ascii2, width/2, height/2);
     } else {
-      image(images['img'], xToilet, yToilet);
-      image(images['meo'], xMeo, yMeo);
-      image(images['hani'], xHani, yHani);
+      image(img, xToilet, yToilet);
+      image(meo, xMeo, yMeo);
+      image(hani, xHani, yHani);
       push();
       let doTint = map(khoangCachHani, 0, width / 2, 0, 255);
       tint(255, doTint);
-      image(images['img1'], mouseX, mouseY, 150, 150);
+      image(img1, mouseX, mouseY, 150, 150);
       pop();
     }
   }
 }
+
+// function mouseDragged() {
+//   if (
+//     mouseX > img1PosX - img1.width / 2 &&
+//     mouseX < img1PosX + img1.width / 2 &&
+//     mouseY > img1PosY - img1.height / 2 &&
+//     mouseY < img1PosX + img1.height / 2
+//   ) {
+//     img1PosX = mouseX;
+//     img1PosY = mouseY;
+//   }
+// }
