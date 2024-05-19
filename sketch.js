@@ -69,19 +69,19 @@ let xHani, yHani;
 let target = 0;
 
 function preload() {
-  img1 = loadImage("https://i.imgur.com/hdqHWwQ.png");
-  img2 = loadImage("https://i.imgur.com/hdqHWwQ.png");
-  img = loadImage("https://i.imgur.com/4x5AUYC.png");
-  meo = loadImage("https://i.imgur.com/Vegi2h9.png");
-  hani = loadImage("https://i.imgur.com/S7sS5pD.png");
-  bg = loadImage("https://i.imgur.com/zKjTdQS.jpeg");
-  miki = loadImage("https://i.imgur.com/EDJhY3y.png");
-  // bunbo = loadImage("https://i.imgur.com/uQzTysU.png");
-  trash = loadImage("https://i.imgur.com/hSBklHh.png");
-  bgs =loadImage("https://i.imgur.com/dGDXJvK.png");
-  //mogu = loadImage("https://i.imgur.com/n4GwMDI.png");
-  title = loadImage("https://i.imgur.com/dvliyQA.png");
-  treasure = loadImage("https://i.imgur.com/nUJN3rP.png");
+  img1 = loadImage("/images/img1.png");
+  img2 = loadImage("/images/img2.png");
+  img = loadImage("/images/img.png");
+  meo = loadImimgage("/images/meo.png");
+  hani = loadImage("/images/hani.png");
+  bg = loadImage("/images/bg.jpeg");
+  miki = loadImage("/images/miki.png");
+  // bunbo = loadImage("/images/bunbo.png");
+  trash = loadImage("/images/trash.png");
+  bgs =loadImage("/images/bgs.png");
+  //mogu = loadImage("/images/mogu.png");
+  title = loadImage("/images/title.png");
+  treasure = loadImage("/images/treasure.png");
 }
 
 function setup() {
